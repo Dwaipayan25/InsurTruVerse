@@ -11,7 +11,7 @@ contract NFT is ERC721URIStorage {
     uint256 public units = 10**18;
     address public owner;
     constructor() ERC721("INSURANCE NFT","INFT") {
-        token=IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138);
+        token=IERC20(0x37D4203FaE62CCd7b1a78Ef58A5515021ED8FD84);
         owner=msg.sender;
     }
 
@@ -24,3 +24,5 @@ contract NFT is ERC721URIStorage {
         return tokenCount;
     }
 }
+
+//NFT deployed to: 0x7D2dF3C9439fd9b8c89806e1B3C717B722c1c06C

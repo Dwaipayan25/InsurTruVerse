@@ -11,11 +11,11 @@ contract Marketplace is ReentrancyGuard{
     address payable public feeAccount;
     uint256 public itemCount;
     IERC20 token;
-    uint256 public m=10**18;
+    uint256 public unit=10**18;
 
     constructor(){
         feeAccount = payable(msg.sender);
-        token=IERC20(0xd9145CCE52D386f254917e481eB44e9943F39138);
+        token=IERC20(0x37D4203FaE62CCd7b1a78Ef58A5515021ED8FD84);
     }
 
     event Offered(uint itemId,address indexed nft,uint tokenId,uint price,address indexed seller);
@@ -84,13 +84,13 @@ contract Marketplace is ReentrancyGuard{
 
     function requestClaim(uint256 itemId,uint256 claimPrice)public{
         require(msg.sender==items[itemId].seller);
-        message memory newMessage = message(msg.sender, itemId, claimPrice, "I am claiming Insurance for my car");
+        message memory newMessage = message(msg.sender, itemId, claimPrice*unit, "I am claiming Insurance for my car");
         messages[feeAccount].push(newMessage);
     }
 
     function sendClaim(uint256 itemId,address customer,uint256 claimPrice)public returns(bool){
         require(msg.sender==feeAccount);
-        bool x=token.transferFrom(msg.sender,customer,claimPrice);
+        bool x=token.transferFrom(msg.sender,customer,claimPrice*unit);
         message memory newMessage = message(msg.sender, itemId, claimPrice, "Your claim for Insurance is approved and sent");
         messagesNFT[itemId].push(newMessage);
         messages[customer].push(newMessage);
@@ -115,3 +115,5 @@ contract Marketplace is ReentrancyGuard{
         return messages[msg.sender];
     }
 }
+
+//Marketplace deployed to: 0x2A99F14C43CF92c97457E2dE49146cBe12F204aF
