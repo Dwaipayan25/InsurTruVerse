@@ -57,7 +57,7 @@ const Profile = ({ marketplace, nft, account,verseToken }) => {
               <strong>Address ID:</strong> {changeToInt(message.itemId)}
             </Card.Text>
             <Card.Text>
-              <strong>Price:</strong> {(ethers.utils.formatEther(message.price).toString())}
+              <strong>Price:</strong> {(ethers.utils.formatEther(message.price).toString())} VTEST
             </Card.Text>
             <Card.Text>
               <strong>Reason:</strong> {message.reason}

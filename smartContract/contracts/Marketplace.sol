@@ -84,7 +84,7 @@ contract Marketplace is ReentrancyGuard{
 
     function requestClaim(uint256 itemId,uint256 claimPrice)public{
         require(msg.sender==items[itemId].seller);
-        message memory newMessage = message(msg.sender, itemId, claimPrice*unit, "I am claiming Insurance for my car");
+        message memory newMessage = message(msg.sender, itemId, claimPrice, "I am claiming Insurance for my car");
         messages[feeAccount].push(newMessage);
     }
 
@@ -118,3 +118,4 @@ contract Marketplace is ReentrancyGuard{
 }
 
 //Marketplace deployed to: 0x2A99F14C43CF92c97457E2dE49146cBe12F204aF
+// 0xC02bCD4d897084049DC220922dB351182A237446

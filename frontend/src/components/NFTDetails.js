@@ -17,6 +17,10 @@ const fromWei = (n) => {
   return ethers.utils.formatEther(n);
 };
 
+const trimLast18 =(n)=>{
+  return (n.toString().slice(0,-18));
+}
+
 
 const NFTDetails = ({
   marketplace,
@@ -130,7 +134,7 @@ const NFTDetails = ({
               <tr>
               </tr>
                 <td className="item-label">Value:</td>
-                <td>{price}</td>
+                <td>{trimLast18(price)} VTEST</td>
             </tbody>
           </table>
         </div>
@@ -178,13 +182,13 @@ const NFTDetails = ({
         >
           <Card.Body>
             <Card.Title style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-              Customer: {message.customer}
+              SentBy: {message.customer}
             </Card.Title>
             <Card.Text>
               <strong>Address ID:</strong> {changeToInt(message.itemId)}
             </Card.Text>
             <Card.Text>
-              <strong>Price:</strong> {(ethers.utils.formatEther(message.price).toString())}
+              <strong>Price:</strong> {(ethers.utils.formatEther(message.price).toString())} VTEST
             </Card.Text>
             <Card.Text>
               <strong>Reason:</strong> {message.reason}

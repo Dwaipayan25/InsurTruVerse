@@ -32,15 +32,13 @@ function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     //Set up signer
     const signer = provider.getSigner();
-    
     loadContracts(signer);
   }
 
   const loadContracts = async (signer) => {
-    const marketplace = new ethers.Contract("0x9cA97c2f873253510b886fd45847297656ec2950", Marketplace.abi, signer);
-    // const marketplace = new ethers.Contract("0xd080c3eA29a3B96a9e47d9B4078eC9331B542Af2", Marketplace.abi, signer);
+    const marketplace = new ethers.Contract("0x4BD25511DD92aed0DC4256F6e3A31BdC634A0764", Marketplace.abi, signer);
     setMarketplace(marketplace);
-    const nft = new ethers.Contract("0x619f56373ea848795413e4B106C311d62aCD6F25", NFT.abi, signer);
+    const nft = new ethers.Contract("0xa7dca4ebCECA73d0866B4a1d6cab28aa3a7cC0f5", NFT.abi, signer);
     setNft(nft);
     const truflation = new ethers.Contract("0x1dFD39Ae186E0cC1a81Bc231A508BC1aBcB8eAC2", Truflation.abi, signer);
     setTruflation(truflation);

@@ -437,7 +437,7 @@ const Create = ({ marketplace, nft, truflation, verseToken }) => {
                 onChange={handleExpiryDateChange}
               />
 
-              totalAmount: {price}
+              totalAmount: {price} VTEST
 
               <div className="d-grid px-0">
                 <Button onClick={createNFT} variant="primary" size="lg">
