@@ -11,6 +11,7 @@ import Create from "./components/Create";
 import MyListedItems from "./components/MyListedItem";
 import NFTDetails from './components/NFTDetails';
 import Profile from './components/Profile';
+import Home from './components/Home';
 import { useState } from 'react';
 const { ethers } = require("ethers");
 
@@ -66,9 +67,7 @@ function App() {
       </div>
       ):(
       <Routes>
-        {/* <Route path="/" element={
-          <Home marketplace={marketplace} nft={nft} />
-        }/> */}
+        <Route path="/" element={<Home marketplace={marketplace} nft={nft} />}/>
         <Route path="/create" element={<Create marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken}/>}/>
         <Route path="/my-listed-items" element={<MyListedItems marketplace={marketplace} nft={nft} account={account} setid={setIdfunc}/>}/>
         <Route path='/NFTDetails/:id' element={<NFTDetails marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken} account={account} id={id}/>}/>

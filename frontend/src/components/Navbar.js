@@ -8,8 +8,8 @@ const Navigation =({web3Handler,account,marketplace})=>{
         <Navbar expand="lg" variant="dark" bg="primary" style={{ backgroundColor: "blue" }}>
   <Container>
     <Navbar.Brand href="">
-      <img src={Logo} alt="logo" width="60" height="60" className="d-inline-block align-top" />
-      &nbsp;
+      <Link to='/'><img src={Logo} alt="logo" width="60" height="60" className="d-inline-block align-top" /></Link>
+      {/* &nbsp; */}
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
