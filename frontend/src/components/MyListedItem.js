@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ethers } from "ethers"
 import { Row, Col, Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 function renderSoldItems(items) {
   return (
@@ -22,7 +23,12 @@ function renderSoldItems(items) {
   )
 }
 
-export default function MyListedItems({ marketplace, nft, account }) {
+const changeToInt=(_x)=>{
+    const x= ethers.utils.formatEther(_x)*(10**18);
+    return x;
+}
+
+export default function MyListedItems({ marketplace, nft, account,setid }) {
   const [loading, setLoading] = useState(true)
   const [listedItems, setListedItems] = useState([])
   const [soldItems, setSoldItems] = useState([])
@@ -39,13 +45,11 @@ export default function MyListedItems({ marketplace, nft, account }) {
         // use uri to fetch the nft metadata stored on ipfs 
         const response = await fetch(uri)
         const metadata = await response.json()
-        // get total price of item (item price + fee)
-        // const totalPrice = await marketplace.getTotalPrice(i.itemId)
-        // define listed item object
+
         let item = {
         //   totalPrice,
           price: i.price,
-          itemId: i.itemId,
+          itemId: changeToInt(i.itemId),
           name: metadata.name,
           description: metadata.description,
           rno: metadata.rno,
@@ -61,6 +65,11 @@ export default function MyListedItems({ marketplace, nft, account }) {
     setListedItems(listedItems)
     setSoldItems(soldItems)
   }
+  function hello(n){
+    console.log(n);
+  }
+
+
   useEffect(() => {
     loadListedItems()
   }, [])
@@ -84,6 +93,12 @@ export default function MyListedItems({ marketplace, nft, account }) {
                         <Card.Text>{item.description}</Card.Text>
                     </Card.Body>
                   <Card.Footer>{ethers.utils.formatEther(item.price)} VERSE</Card.Footer>
+                <Link to="/NFTDetails/:id">
+                    <button onClick={()=>{setid(item.itemId)}} style={{backgroundColor:'greenyellow', paddingLeft:50 ,paddingRight:50}}>
+                        {/* {item.itemId} */}
+                        View Details
+                    </button>
+                </Link>
                 </Card>
               </Col>
             ))}

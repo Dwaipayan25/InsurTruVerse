@@ -9,6 +9,7 @@ import VerseToken from './contracts/VerseTest.json';
 import Navbar from './components/Navbar';
 import Create from "./components/Create";
 import MyListedItems from "./components/MyListedItem";
+import NFTDetails from './components/NFTDetails';
 import { useState } from 'react';
 const { ethers } = require("ethers");
 
@@ -20,6 +21,7 @@ function App() {
   const [nft, setNft] = useState(null);
   const [truflation, setTruflation] = useState(null);
   const [verseToken, setVerseToken] = useState(null);
+  const [id,setId]=useState(0);
 
   const web3Handler = async () => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -37,11 +39,15 @@ function App() {
     setMarketplace(marketplace);
     const nft = new ethers.Contract("0x619f56373ea848795413e4B106C311d62aCD6F25", NFT.abi, signer);
     setNft(nft);
-    const truflation = new ethers.Contract("0x211DC534C376CFEB44B4B882b6bF6F153e8DB561", Truflation.abi, signer);
+    const truflation = new ethers.Contract("0x1dFD39Ae186E0cC1a81Bc231A508BC1aBcB8eAC2", Truflation.abi, signer);
     setTruflation(truflation);
     const verseToken = new ethers.Contract("0x37D4203FaE62CCd7b1a78Ef58A5515021ED8FD84", VerseToken.abi, signer);
     setVerseToken(verseToken);
     setLoading(false);
+  }
+
+  function setIdfunc(_id){
+    setId(_id);
   }
 
 
@@ -50,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar web3Handler={web3Handler} account={account} />
+        <Navbar web3Handler={web3Handler} account={account} marketplace={marketplace}/>
         {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
         <Spinner animation="border" style={{ display: 'flex' }} />
@@ -62,7 +68,8 @@ function App() {
           <Home marketplace={marketplace} nft={nft} />
         }/> */}
         <Route path="/create" element={<Create marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken}/>}/>
-        <Route path="/my-listed-items" element={<MyListedItems marketplace={marketplace} nft={nft} account={account}/>}/>
+        <Route path="/my-listed-items" element={<MyListedItems marketplace={marketplace} nft={nft} account={account} setid={setIdfunc}/>}/>
+        <Route path='/NFTDetails/:id' element={<NFTDetails marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken} account={account} id={id}/>}/>
         {/* <Route path="/my-purchases" element={<MyPurchases marketplace={marketplace} nft={nft} account={account}/>}/> */}
       </Routes>
       )}

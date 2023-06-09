@@ -2,7 +2,8 @@ import {Link} from 'react-router-dom'
 import {Navbar,Nav,Button,Container,Stack} from 'react-bootstrap'
 import Logo from './Logo01.jpeg'
 
-const Navigation =({web3Handler,account})=>{
+const Navigation =({web3Handler,account,marketplace})=>{
+  
     return(
         <Navbar expand="lg" variant="dark" bg="primary" style={{ backgroundColor: "blue" }}>
   <Container>
@@ -16,7 +17,8 @@ const Navigation =({web3Handler,account})=>{
         <Nav.Link as={Link} to="/" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Home</Button></Nav.Link>
         <Nav.Link as={Link} to="/create" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Create</Button></Nav.Link>
         <Nav.Link as={Link} to="/my-listed-items" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">My Insurance</Button></Nav.Link>
-        <Nav.Link as={Link} to="/my-purchases" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Profile</Button></Nav.Link>
+        {}
+        <Nav.Link as={Link} to="/ownerProfile" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Profile</Button></Nav.Link>
       </Nav>
       <Nav>
         {account ? (

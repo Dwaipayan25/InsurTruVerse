@@ -111,6 +111,7 @@ contract Marketplace is ReentrancyGuard{
     function getMessageNFT(uint256 itemId)public view returns(message[] memory){
         return messagesNFT[itemId];
     }
+    
     function getMessageOwner()public view returns(message[] memory){
         return messages[msg.sender];
     }
