@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import dumphoto from "./Logo01.jpeg";
 import "./NFTDetails.css";
 import { Row, Form, Button } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 
 function hello(n) {
   console.log(n);
@@ -38,6 +39,7 @@ const NFTDetails = ({
   const [owner, setOwner] = useState("");
   const [claimDescription, setClaimDescription] = useState("");
   const [claimPrice, setClaimPrice] = useState("");
+  const [messages, setmessages] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -68,8 +70,9 @@ const NFTDetails = ({
       console.log(duration);
       console.log(expiryDate);
       console.log(owner);
-      const acc=await marketplace.feeAccount();
-        console.log(acc);
+      const messages = await marketplace.getMessageNFT(id);
+      setmessages(messages);
+      console.log(messages);
     };
     getData();
   }, []);
@@ -165,7 +168,31 @@ const NFTDetails = ({
     </Row>
     </main>
     </div>
-
+    
+    <h2 style={{paddingTop:100, textAlign: "center" }}>Insurance Claimed</h2>
+      {messages.map((message, index) => (
+        <Card
+          key={index}
+          className="mb-3"
+          style={{ width: "700px", margin: "0 auto" }}
+        >
+          <Card.Body>
+            <Card.Title style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+              Customer: {message.customer}
+            </Card.Title>
+            <Card.Text>
+              <strong>Address ID:</strong> {changeToInt(message.itemId)}
+            </Card.Text>
+            <Card.Text>
+              <strong>Price:</strong> {(ethers.utils.formatEther(message.price).toString())}
+            </Card.Text>
+            <Card.Text>
+              <strong>Reason:</strong> {message.reason}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    
     </div>
   );
 };

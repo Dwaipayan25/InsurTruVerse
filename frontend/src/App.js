@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Create from "./components/Create";
 import MyListedItems from "./components/MyListedItem";
 import NFTDetails from './components/NFTDetails';
+import Profile from './components/Profile';
 import { useState } from 'react';
 const { ethers } = require("ethers");
 
@@ -36,6 +37,7 @@ function App() {
 
   const loadContracts = async (signer) => {
     const marketplace = new ethers.Contract("0x9cA97c2f873253510b886fd45847297656ec2950", Marketplace.abi, signer);
+    // const marketplace = new ethers.Contract("0xd080c3eA29a3B96a9e47d9B4078eC9331B542Af2", Marketplace.abi, signer);
     setMarketplace(marketplace);
     const nft = new ethers.Contract("0x619f56373ea848795413e4B106C311d62aCD6F25", NFT.abi, signer);
     setNft(nft);
@@ -70,6 +72,7 @@ function App() {
         <Route path="/create" element={<Create marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken}/>}/>
         <Route path="/my-listed-items" element={<MyListedItems marketplace={marketplace} nft={nft} account={account} setid={setIdfunc}/>}/>
         <Route path='/NFTDetails/:id' element={<NFTDetails marketplace={marketplace} nft={nft} truflation={truflation} verseToken={verseToken} account={account} id={id}/>}/>
+        <Route path="/profile" element={<Profile marketplace={marketplace} nft={nft} account={account} verseToken={verseToken}/> }/>
         {/* <Route path="/my-purchases" element={<MyPurchases marketplace={marketplace} nft={nft} account={account}/>}/> */}
       </Routes>
       )}

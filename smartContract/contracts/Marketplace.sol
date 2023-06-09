@@ -91,7 +91,7 @@ contract Marketplace is ReentrancyGuard{
     function sendClaim(uint256 itemId,address customer,uint256 claimPrice)public returns(bool){
         require(msg.sender==feeAccount);
         bool x=token.transferFrom(msg.sender,customer,claimPrice*unit);
-        message memory newMessage = message(msg.sender, itemId, claimPrice, "Your claim for Insurance is approved and sent");
+        message memory newMessage = message(msg.sender, itemId, claimPrice*unit, "Your claim for Insurance is approved and sent");
         messagesNFT[itemId].push(newMessage);
         messages[customer].push(newMessage);
         return x;
@@ -111,7 +111,7 @@ contract Marketplace is ReentrancyGuard{
     function getMessageNFT(uint256 itemId)public view returns(message[] memory){
         return messagesNFT[itemId];
     }
-    
+
     function getMessageOwner()public view returns(message[] memory){
         return messages[msg.sender];
     }

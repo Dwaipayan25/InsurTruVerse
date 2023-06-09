@@ -17,8 +17,7 @@ const Navigation =({web3Handler,account,marketplace})=>{
         <Nav.Link as={Link} to="/" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Home</Button></Nav.Link>
         <Nav.Link as={Link} to="/create" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Create</Button></Nav.Link>
         <Nav.Link as={Link} to="/my-listed-items" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">My Insurance</Button></Nav.Link>
-        {}
-        <Nav.Link as={Link} to="/ownerProfile" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Profile</Button></Nav.Link>
+        <Nav.Link as={Link} to="/profile" style={{ color: "white", fontWeight: "bold" }}><Button variant="outline-light">Profile</Button></Nav.Link>
       </Nav>
       <Nav>
         {account ? (
