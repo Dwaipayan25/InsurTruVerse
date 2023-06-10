@@ -19,7 +19,8 @@ Welcome to a **Decentralized inflation-protected insurance platform.** This plat
 3. Install the necessary dependencies: `npm install`
 4. Set up your environment variables for [Private_key]
 5. make sure your. account is connected to goerli testnet to deploy in Goerli as Verse Tokens are supported for Goerli Network
-6. run `npx hardhat run scripts/deploy.js`.
+6. Get some verse tokens from https://goerli.etherscan.io/token/0x37D4203FaE62CCd7b1a78Ef58A5515021ED8FD84#writeContract into your metamask.
+7. run `npx hardhat run scripts/deploy.js`.
 `npx hardhat run scripts/TruflationDeploy.js`
 7. to run the project Locally : Go into client: `cd client`
 8. now add the address of NFT, MarketPlace and Truflation at corresponding places in App.js
